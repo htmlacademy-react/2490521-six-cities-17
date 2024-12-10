@@ -12,6 +12,7 @@ type MainScreenProps = {
 
 function MainScreen({offers}: MainScreenProps): JSX.Element {
   const [isActiveOffer, setIsActiveOffer] = useState<string | null>(null);
+  // eslint-disable-next-line no-console
   console.log(isActiveOffer);
   const handleActiveOfferChange = (id: string | null) => {
     setIsActiveOffer(id);
