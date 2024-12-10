@@ -14,4 +14,5 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
+
 export {NUMBER_OF_OFFERS};

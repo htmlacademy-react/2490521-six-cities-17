@@ -7,22 +7,23 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../utils/const';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
+import { OfferType } from '../../utils/types';
 
 type AppProps = {
-  countOffers: number;
+  offers: OfferType[];
 }
 
-function App({countOffers}: AppProps): JSX.Element {
+function App({offers}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<MainScreen countOffers={countOffers}/>} />
+          <Route path={AppRoute.Main} element={<MainScreen offers={offers}/>} />
           <Route path={AppRoute.Login} element={<LoginScreen />}/>
           <Route path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <FavoritesScreen />
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <FavoritesScreen offers={offers}/>
               </PrivateRoute>
             }
           />

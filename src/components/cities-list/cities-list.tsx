@@ -1,38 +1,36 @@
-import { Link } from 'react-router-dom';
-
 function CitiesList(): JSX.Element {
   return(
     <section className="locations container">
       <ul className="locations__list tabs__list">
         <li className="locations__item">
-          <Link className="locations__item-link tabs__item" to="#">
+          <a className="locations__item-link tabs__item" href="#">
             <span>Paris</span>
-          </Link>
+          </a>
         </li>
         <li className="locations__item">
-          <Link className="locations__item-link tabs__item" to="#">
+          <a className="locations__item-link tabs__item" href="#">
             <span>Cologne</span>
-          </Link>
+          </a>
         </li>
         <li className="locations__item">
-          <Link className="locations__item-link tabs__item" to="#">
+          <a className="locations__item-link tabs__item" href="#">
             <span>Brussels</span>
-          </Link>
+          </a>
         </li>
         <li className="locations__item">
-          <Link className="locations__item-link tabs__item tabs__item--active" to='#'>
+          <a className="locations__item-link tabs__item tabs__item--active" href='#'>
             <span>Amsterdam</span>
-          </Link>
+          </a>
         </li>
         <li className="locations__item">
-          <Link className="locations__item-link tabs__item" to="#">
+          <a className="locations__item-link tabs__item" href="#">
             <span>Hamburg</span>
-          </Link>
+          </a>
         </li>
         <li className="locations__item">
-          <Link className="locations__item-link tabs__item" to="#">
+          <a className="locations__item-link tabs__item" href="#">
             <span>Dusseldorf</span>
-          </Link>
+          </a>
         </li>
       </ul>
     </section>
