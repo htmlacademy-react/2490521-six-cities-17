@@ -1,14 +1,23 @@
 import { Helmet } from 'react-helmet-async';
-import CardItem from '../../components/card-item/card-item';
 import CitiesList from '../../components/cities-list/cities-list';
 import Header from '../../components/header/header';
 import SortForm from '../../components/sort-form/sort-form';
+import { OfferType } from '../../utils/types';
+import CardList from '../../components/card-list/card-list';
+import { useState } from 'react';
 
 type MainScreenProps = {
-  countOffers: number;
+  offers: OfferType[];
 }
 
-function MainScreen({countOffers}: MainScreenProps): JSX.Element {
+function MainScreen({offers}: MainScreenProps): JSX.Element {
+  const [isActiveOffer, setIsActiveOffer] = useState<string | null>(null);
+  // eslint-disable-next-line no-console
+  console.log(isActiveOffer);
+  const handleActiveOfferChange = (id: string | null) => {
+    setIsActiveOffer(id);
+  };
+
   return(
     <div className="page page--gray page--main">
       <Header />
@@ -27,7 +36,7 @@ function MainScreen({countOffers}: MainScreenProps): JSX.Element {
               <b className="places__found">312 places to stay in Amsterdam</b>
               <SortForm />
               <div className="cities__places-list places__list tabs__content">
-                {[...Array<number>(countOffers)].map(()=> <CardItem key={Math.random()}/>)}
+                <CardList onHandleActiveOfferChange={handleActiveOfferChange} offers={offers}/>
               </div>
             </section>
             <div className="cities__right-section">
