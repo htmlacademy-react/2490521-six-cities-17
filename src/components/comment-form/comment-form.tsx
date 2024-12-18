@@ -1,4 +1,5 @@
 import { useState, ChangeEvent } from 'react';
+import { MIN_LENGTH_OF_REVIEW, MAX_LENGTH_OF_REVIEW } from '../../utils/const';
 
 type FormDataType = {
   rating: number;
@@ -15,16 +16,19 @@ function CommentForm(): JSX.Element {
   const [formData, setFormData] = useState(initialValue);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handleValueChange = (evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, inputName: keyof FormDataType) => {
+  const handleValueChange = (evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const { name, value } = evt.target;
+
     setFormData((prevState) => ({
       ...prevState,
-      [inputName]: evt.target.value,
+      [name]: value,
     }));
 
-    if(formData.review.length > 50 && formData.review.length < 300) {
+    if (formData.review.length > MIN_LENGTH_OF_REVIEW && formData.review.length < MAX_LENGTH_OF_REVIEW) {
       setIsButtonDisabled(false);
     }
   };
+
 
   const handleSubmitForm = (evt: ChangeEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -32,7 +36,7 @@ function CommentForm(): JSX.Element {
   };
 
   return (
-    <form className='reviews__form form' action='#' method='post' onSubmit={handleSubmitForm}>
+    <form className='reviews__form form' onSubmit={handleSubmitForm}>
       <label className='reviews__label form__label' htmlFor='review'>
         Your review
       </label>
@@ -41,10 +45,10 @@ function CommentForm(): JSX.Element {
         <input
           className='form__rating-input visually-hidden'
           name='rating'
-          defaultValue={5}
+          value={5}
           id='5-stars'
           type='radio'
-          onChange={(evt) => handleValueChange(evt, 'rating')}
+          onChange={handleValueChange}
         />
         <label
           htmlFor='5-stars'
@@ -58,10 +62,10 @@ function CommentForm(): JSX.Element {
         <input
           className='form__rating-input visually-hidden'
           name='rating'
-          defaultValue={4}
+          value={4}
           id='4-stars'
           type='radio'
-          onChange={(evt) => handleValueChange(evt, 'rating')}
+          onChange={handleValueChange}
         />
         <label
           htmlFor='4-stars'
@@ -75,10 +79,10 @@ function CommentForm(): JSX.Element {
         <input
           className='form__rating-input visually-hidden'
           name='rating'
-          defaultValue={3}
+          value={3}
           id='3-stars'
           type='radio'
-          onChange={(evt) => handleValueChange(evt, 'rating')}
+          onChange={handleValueChange}
         />
         <label
           htmlFor='3-stars'
@@ -92,10 +96,10 @@ function CommentForm(): JSX.Element {
         <input
           className='form__rating-input visually-hidden'
           name='rating'
-          defaultValue={2}
+          value={2}
           id='2-stars'
           type='radio'
-          onChange={(evt) => handleValueChange(evt, 'rating')}
+          onChange={handleValueChange}
         />
         <label
           htmlFor='2-stars'
@@ -109,10 +113,10 @@ function CommentForm(): JSX.Element {
         <input
           className='form__rating-input visually-hidden'
           name='rating'
-          defaultValue={1}
+          value={1}
           id='1-star'
           type='radio'
-          onChange={(evt) => handleValueChange(evt, 'rating')}
+          onChange={handleValueChange}
         />
         <label
           htmlFor='1-star'
@@ -130,7 +134,7 @@ function CommentForm(): JSX.Element {
         name='review'
         placeholder='Tell how was your stay, what you like and what can be improved'
         value={formData.review}
-        onChange={(evt) => handleValueChange(evt, 'review')}
+        onChange={handleValueChange}
       />
       <div className='reviews__button-wrapper'>
         <p className='reviews__help'>
